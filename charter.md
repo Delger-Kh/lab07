@@ -6,7 +6,7 @@
 
 ## Сонгосон аялалууд
 
-- Couch Potato (Hotel district): <reason, e.g. all 3 fields are required, so empty/minimal input directly tests that rule>
-- Saboteur (Seedy district): <reason, e.g. the spec requires 400 for bad JSON, so attack the API with curl>
-- Supermodel (Tourist district): <reason, e.g. button color, message typos and table layout are visible UI rules>
-- FedEx (Business district): <reason, e.g. follow one book through add → table → counter → search → delete>
+- Couch Potato (Hotel district): all 3 fields are required, so empty/minimal input directly tests that rule
+- Saboteur (Seedy district): the spec requires 400 for bad JSON, so attack the API with curl
+- Supermodel (Tourist district): button color, message typos and table layout are visible UI rules
+- FedEx (Business district): follow one book through add → table → counter → search → delete
