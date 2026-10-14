@@ -1,0 +1,12 @@
+17:38 API GET /api/books -> HTTP/1.1 200 OK
+17:38 API POST [broken-json] body={"title": "broken -> HTTP/1.1 200 OK (evidence/api-broken-json.txt)
+17:38 API POST [not-json] body=not json at all -> HTTP/1.1 200 OK (evidence/api-not-json.txt)
+17:38 API POST [empty-body] body= -> HTTP/1.1 201 Created (evidence/api-empty-body.txt)
+17:38 API POST [empty-object] body={} -> HTTP/1.1 201 Created (evidence/api-empty-object.txt)
+17:38 API POST [empty-fields] body={"title":"","author":"","year":1999} -> HTTP/1.1 201 Created (evidence/api-empty-fields.txt)
+17:38 API POST [year-2101] body={"title":"API 2101","author":"Tester","year":2101} -> HTTP/1.1 201 Created (evidence/api-year-2101.txt)
+17:38 API POST [year-999] body={"title":"API 999","author":"Tester","year":999} -> HTTP/1.1 201 Created (evidence/api-year-999.txt)
+17:38 API POST [year-decimal] body={"title":"API dec","author":"Tester","year":1999.5} -> HTTP/1.1 201 Created (evidence/api-year-decimal.txt)
+17:38 API POST [year-text] body={"title":"API text","author":"Tester","year":"abc"} -> HTTP/1.1 201 Created (evidence/api-year-text.txt)
+17:38 API POST [duplicate] body={"title":"Clean Code","author":"Robert C. Martin","year":2008} -> HTTP/1.1 201 Created (evidence/api-duplicate.txt)
+17:38 API POST [valid] body={"title":"Valid book","author":"Tester","year":1999} -> HTTP/1.1 201 Created (evidence/api-valid.txt)
