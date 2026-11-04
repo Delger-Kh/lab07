@@ -1,29 +1,29 @@
-# BUG-05 — Буруу JSON POST хийхэд 400-ын оронд 200 OK буцаана
+# BUG-05: POST /api/books руу буруу JSON илгээхэд 400-ын оронд 200 OK буцаадаг
 
-| Талбар | Утга |
-|---|---|
-| Олдсон | 2026-10-23, 23:02 (curl-ийн Date толгой 15:02:27 GMT), тэмдэглэл 23:06 |
-| Аялал | Saboteur |
-| Түвшин | API |
-| Ноцтой байдал | Major |
-| Давтагдах | Байнга |
-| Орчин | Windows 10 Pro · Chrome 155.0.8059.85 · Node v24.13.0 · «Уншлагын жагсаалт» v2.0 (localhost:3000) |
+Орчин: Уншлагын жагсаалт v2.0, Chrome 155.0.8059.85, Windows 10 Pro, 2026-10-23
 
-## Алхам
-1. Аппыг асаана.
-2. Хаалтгүй, эвдэрсэн JSON (`api-bodies/broken.json`) илгээнэ:
-   ```
-   curl.exe -i -X POST http://localhost:3000/api/books -H "Content-Type: application/json" --data-binary "@api-bodies/broken.json"
-   ```
+Урьдчилсан нөхцөл: node app.js-ийг шинээр асаасан (анхны 3 ном), http://localhost:3000 нээлттэй. Репогийн үндсэн хавтаснаас ажиллуулна (`api-bodies/broken.json` файл репод бий).
 
-## Хүлээгдэж буй үр дүн
-`HTTP/1.1 400 Bad Request` ба алдааны тайлбар. Ном хадгалагдахгүй.
+## Дахин гаргах алхам
+1. Хаалтгүй, эвдэрсэн JSON биетэй POST хүсэлт илгээнэ:
+   - Linux/macOS:
+     ```
+     curl -i -X POST http://localhost:3000/api/books -H "Content-Type: application/json" --data-binary @api-bodies/broken.json
+     ```
+   - Windows PowerShell:
+     ```
+     curl.exe -i -X POST http://localhost:3000/api/books -H "Content-Type: application/json" --data-binary "@api-bodies/broken.json"
+     ```
+2. Хариуны статусын мөрийг харна.
+3. `curl -i http://localhost:3000/api/books` илгээж хадгалагдсан номуудыг харна.
 
-## Бодит үр дүн
-`HTTP/1.1 200 OK`, бие нь `{"result":"OK"}`. Сервер JSON-ийн бүтцийг шалгадаггүй.
+Хүлээгдэж байсан: Спецификацийн «API: буруу JSON биетэй POST хүсэлтэд 400 алдаа буцаана» дүрмийн дагуу `HTTP/1.1 400 Bad Request`.
 
-## Нотолгоо
-[evidence/bug-05-curl.txt](../evidence/bug-05-curl.txt)
+Бодит үр дүн: `HTTP/1.1 200 OK`, бие нь `{"result":"OK"}`. GET /api/books-д шинэ ном нэмэгдээгүй — сервер хүсэлтийг амжилттай гэж худал хариулдаг. JSON биш текст (`api-bodies/bad.txt`) илгээхэд ч мөн 200 OK.
+
+Ноцтой байдал: Major — API-г ашигладаг клиент (жишээ нь өөр апп) өгөгдлөө хадгалагдсан гэж буруу ойлгох тул өгөгдөл чимээгүй алдагдана.
+
+Хавсралт: [evidence/bug-05-curl.txt](../evidence/bug-05-curl.txt)
 
 ```
 HTTP/1.1 200 OK
@@ -36,9 +36,7 @@ Transfer-Encoding: chunked
 {"result":"OK"}
 ```
 
-## Нэмэлт ажиглалт
-Session-ий үеэр `empty.json` (`{}`) ба `year3000.json` (Он 3000) API-аар илгээхэд хоёулаа хадгалагдсан (GET /api/books дээр id 10, 11). Тиймээс серверт оролтын шалгалт огт байхгүй.
-
+Олдсон аялал: Saboteur
 
 ## Дахин шалгалт (2026-11-04, 13:10)
 Аппыг шинээр асааж давтахад согог давтагдсан:

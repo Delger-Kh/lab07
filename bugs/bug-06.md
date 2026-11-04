@@ -1,28 +1,21 @@
-# BUG-06 — «Хуучин хувилбар» (/old) линк 500 Internal Server Error өгнө
+# BUG-06: Хуудасны доод талын «Хуучин хувилбар» линк 500 Internal Server Error өгдөг
 
-| Талбар | Утга |
-|---|---|
-| Олдсон | 2026-10-23, 23:18 |
-| Аялал | Supermodel |
-| Түвшин | UI / HTTP |
-| Ноцтой байдал | Major |
-| Давтагдах | Байнга |
-| Орчин | Windows 10 Pro · Chrome 155.0.8059.85 · Node v24.13.0 · «Уншлагын жагсаалт» v2.0 (localhost:3000) |
+Орчин: Уншлагын жагсаалт v2.0, Chrome 155.0.8059.85, Windows 10 Pro, 2026-10-23
 
-## Алхам
-1. Аппыг асааж, http://localhost:3000 нээнэ.
-2. Хуудасны доод талын «Хуучин хувилбар» линк дарна.
+Урьдчилсан нөхцөл: node app.js-ийг шинээр асаасан (анхны 3 ном), http://localhost:3000 нээлттэй
 
-## Хүлээгдэж буй үр дүн
-Хуучин хувилбарын хуудас нээгдэнэ (эсвэл линк байхгүй/идэвхгүй байна).
+## Дахин гаргах алхам
+1. Хуудасны доод талын «Хуучин хувилбар» линк дарна.
 
-## Бодит үр дүн
-http://localhost:3000/old хаяг руу шилжиж «Internal Server Error» гэсэн текст гарна. HTTP статус 500.
+Хүлээгдэж байсан: Спецификацийн «бүх хуудас, линк ажиллана» дүрмийн дагуу хуучин хувилбарын хуудас нээгдэнэ.
 
-## Нотолгоо
-![bug-06](../screenshots/bug-06.jpg)
+Бодит үр дүн: http://localhost:3000/old руу шилжиж, зөвхөн «Internal Server Error» гэсэн текст гарна. `curl -i http://localhost:3000/old` → `HTTP/1.1 500 Internal Server Error`.
 
-`curl.exe -i http://localhost:3000/old` → [evidence/bug-06-curl.txt](../evidence/bug-06-curl.txt)
+Ноцтой байдал: Minor — үндсэн функц (нэмэх, хайх) ажилласаар байгаа ч хэрэглэгчид харагдах линк эвдэрч, серверийн алдаа шууд гарна.
+
+Хавсралт: screenshots/bug-06.jpg · [evidence/bug-06-curl.txt](../evidence/bug-06-curl.txt)
+
+![BUG-06](../screenshots/bug-06.jpg)
 
 ```
 HTTP/1.1 500 Internal Server Error
@@ -34,3 +27,5 @@ Transfer-Encoding: chunked
 
 Internal Server Error
 ```
+
+Олдсон аялал: Supermodel
