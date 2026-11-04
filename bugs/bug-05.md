@@ -38,3 +38,9 @@ Transfer-Encoding: chunked
 
 ## Нэмэлт ажиглалт
 Session-ий үеэр `empty.json` (`{}`) ба `year3000.json` (Он 3000) API-аар илгээхэд хоёулаа хадгалагдсан (GET /api/books дээр id 10, 11). Тиймээс серверт оролтын шалгалт огт байхгүй.
+
+
+## Дахин шалгалт (2026-11-04, 13:10)
+Аппыг шинээр асааж давтахад согог давтагдсан:
+- `bad.txt` ба `broken.json` → `200 OK {"result":"OK"}`, гэхдээ ном хадгалагдаагүй: сервер амжилттай гэж худал хариулдаг. ([retest-bad](../evidence/retest-bad.txt), [retest-broken](../evidence/retest-broken.txt))
+- `empty.json` → `201 Created`, id 4; `year3000.json` → `201 Created`, id 5. ([retest-empty](../evidence/retest-empty.txt), [retest-year3000](../evidence/retest-year3000.txt), [retest-get](../evidence/retest-get.txt))

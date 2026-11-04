@@ -32,7 +32,9 @@
 23:26 BUG-07: Хайлт том/жижиг үсэг ялгадаг. тунгалаг -> 0 мөр, Т -> олдсон. screenshots/bug-07.jpg
 23:28 SESSION END
 
---- Session-ий дараах тэмдэглэл (2026-11-04, багшийн feedback-ийн дагуу засав) ---
-- Дээрх цагтай мөрүүдийн утгыг нөхөж зохиоогүй. Session-ий үеэр бичээгүй утгыг «[тэмдэглээгүй]» гэж тэмдэглэв.
-- Давхардсан 22:39, 22:50 мөрийг нэг болгов. Скриншотын өргөтгөлийг бодит файлтай (.jpg) тааруулав.
-- Session-ий үеэр баримтжсан API үр дүн: broken.json -> HTTP/1.1 200 OK (evidence/bug-05-curl.txt), empty.json {} ба year3000.json хадгалагдсан (22:57).
+--- Session-ий дараах дахин шалгалт (2026-11-04, апп шинээр асаасан) ---
+13:10 curl bad.txt (JSON биш) -> HTTP/1.1 200 OK, {"result":"OK"}, ном хадгалагдаагүй. evidence/retest-bad.txt
+13:10 curl broken.json (хаалтгүй JSON) -> HTTP/1.1 200 OK, {"result":"OK"}, ном хадгалагдаагүй. evidence/retest-broken.txt
+13:10 curl empty.json {} -> HTTP/1.1 201 Created, id 4. evidence/retest-empty.txt
+13:10 curl year3000.json -> HTTP/1.1 201 Created, id 5. evidence/retest-year3000.txt
+13:10 GET /api/books -> id 4 (гарчиг/зохиолч хоосон, year байхгүй), id 5 (year 3000) хадгалагдсан. evidence/retest-get.txt

@@ -1,6 +1,6 @@
 # Session report
 
-Тестер: Х.Дэлгэр (B222270835)
+Тестер: Х.Дэлгэр 
 Огноо: 2026-10-23, 22:28 - 23:28 (60 мин)
 Mission: Уншлагын жагсаалт аппын чанарыг шинжлэх
 Charter: Ном нэмэх форм, хайлт, тоолуур, /api/books API-г Couch Potato, Saboteur, Supermodel, Fed-Ex аялалаар судлах (charter.md)
@@ -49,6 +49,19 @@ Charter: Ном нэмэх форм, хайлт, тоолуур, /api/books API-
 
 BUG-01 – BUG-07, тайлан: [bug-01](bugs/bug-01.md), [bug-05](bugs/bug-05.md), [bug-06](bugs/bug-06.md), [bug-07](bugs/bug-07.md). BUG-02/03/04 нь тэмдэглэл болон bug-01 скриншотод.
 
+## Session-ий дараах дахин шалгалт (2026-11-04, 13:10)
+
+Session-ий үеэр статус кодыг тэмдэглээгүй API туршилтуудыг аппыг шинээр асааж давтав.
+
+| Хүсэлт | Хүлээгдэж буй | Бодит | Хадгалагдсан эсэх | Нотолгоо |
+|---|---|---|---|---|
+| bad.txt (JSON биш) | 400 | 200 OK `{"result":"OK"}` | Үгүй | [retest-bad](evidence/retest-bad.txt) |
+| broken.json | 400 | 200 OK `{"result":"OK"}` | Үгүй | [retest-broken](evidence/retest-broken.txt) |
+| empty.json `{}` | 400 | 201 Created, id 4 | Тийм | [retest-empty](evidence/retest-empty.txt) |
+| year3000.json | 400 | 201 Created, id 5 | Тийм | [retest-year3000](evidence/retest-year3000.txt) |
+
+GET /api/books: [retest-get](evidence/retest-get.txt). Буруу JSON-д сервер «OK» гэж хариулдаг ч хадгалдаггүй, харин хоосон болон хязгаараас гадуурх өгөгдлийг шалгалтгүй хадгалдаг.
+
 ## Саадууд (issues)
 
 - Скриншотыг PowerShell-ээр шууд хадгалах туслах команд ажиллаагүй тул Paint-аар гараар хадгалсан, энэ нь цаг зарцуулсан.
@@ -59,3 +72,4 @@ BUG-01 – BUG-07, тайлан: [bug-01](bugs/bug-01.md), [bug-05](bugs/bug-05.
 ## Цагийн задаргаа
 
 Setup 10% · Тест дизайн ба гүйцэтгэл 60% · Согог судлах 30%
+
